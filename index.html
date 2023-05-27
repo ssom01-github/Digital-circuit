@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+#div1, #div2 {
+  float: left;
+  width: 520px;
+  height: 400px;
+  margin: 35px;
+  margin-top: 50px;
+  padding: 50px;
+  border: 5px solid black;
+}
+#drag2{
+    margin-left: 15px;
+    margin-top: 50px;
+    
+}
+#drag3{
+    margin-left: 15px;
+    margin-top: 50px;
+}
+#drag4{
+    margin-left: 15px;
+    margin-top: 50px;
+}
+.btn{
+    padding: 10px;
+    margin: 10px;
+    
+}
+#check{
+    background-color: rgb(155, 155, 239);
+}
+#reset{
+    background-color: rgb(155, 155, 239);
+}
+
+
+</style>
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+
+function func(f1){
+    alert("The workspace have been cleared");
+}
+
+
+
+
+
+</script>
+</head>
+<body>
+
+<h2>Digital Circuit Representation</h2>
+<p>Drag the image back and forth between div1 and div2</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <h1>Components</h1>
+  <img src="battery.png" draggable="true" ondragstart="drag(event)" id="drag1" width="100" height="50">
+  <img src="capacitor.png" draggable="true" ondragstart="drag(event)" id="drag2" width="100" height="50" >
+  <img src="connecting_lines.png" draggable="true" ondragstart="drag(event)" id="drag3" width="100" height="50" >
+  <img src="resistor.png" draggable="true" ondragstart="drag(event)" id="drag4" width="100" height="50" >
+</div>
+
+<form onReset="func(this.form)" >
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <h1>Workspace</h1>
+
+    <div class="btn">
+        <button id="check" class="btn btn-primary" onclick="alert('Right connection')">Check connection</button>
+        <button id="reset" class="btn btn-secondary" onclick="myFunction()">Reset</button>
+    </div>
+</div>
+</form>
+
+
+
+
+</body>
+</html>
+
